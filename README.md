@@ -1,6 +1,6 @@
 # Trabalho-container-Docker
 
-## Projetando, implantando e gerenciando uma rede empresarial usando tecnologia Linux, com ênfase em serviços como DHCP, DNS, Web, FTP, NFS e virtualização com Vagrant e Docker.
+## Projetando, implantando e gerenciando uma rede empresarial usando tecnologia Linux, com ênfase em serviços como DHCP, DNS e Firewall com Docker.
 
 ### Descrição do Trabalho:
 
