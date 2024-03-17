@@ -24,11 +24,11 @@ Para que o usuário consiga rodar o projeto, ele deverá clonar este repositóri
 
 ### Topologias, Estruturas Utilizadas e Funcionamento dos Serviços
 
-- O primeiro container docker que será criado é um container que proverá serviços DHCP. O container receberá um arquivo [dhcp.conf](/etc/dhcp/dhcpd.conf) contendo as devidas configurações para o serviço. Também, o container será liberado a porta 67/udp e será por ela que o servidor DHCP atribuirá o ip para novas maquinas que aparecerem na rede.
+- O primeiro container docker que será criado é um container que proverá serviços DHCP. O container receberá um arquivo [dhcp.conf](./Config/dhcpd.conf) contendo as devidas configurações para o serviço. Também, o container será liberado a porta 67/udp e será por ela que o servidor DHCP atribuirá o ip para novas maquinas que aparecerem na rede.
 
-- O segundo container irá iniciar um servidor DNS para resolver os nomes de dominio dentro da rede. Ao iniciar, ele estará com o arquivo de configuração [named.conf.options] (/etc/bind/named.conf.options) que possuí as atribuições necessárias para realizar a resolução dos nomes na rede, liberando também a porta 53 tcp/udp.
+- O segundo container irá iniciar um servidor DNS para resolver os nomes de dominio dentro da rede. Ao iniciar, ele estará com o arquivo de configuração [dhcp.conf](./Config/named.conf.options) que possuí as atribuições necessárias para realizar a resolução dos nomes na rede, liberando também a porta 53 tcp/udp.
 
-- O terceiro container executara um servidor firewall que por sua vez através do script [firewall.sh] (/root/firewall.sh) realizará as configurações de firewall da rede, bloqueando o acesso de todas as portas e liberando somente para as de dhcp e dns liberadas nos containers anteriores.
+- O terceiro container executara um servidor firewall que por sua vez através do script [firewall.sh](./Config/firewall.sh) realizará as configurações de firewall da rede, bloqueando o acesso de todas as portas e liberando somente para as de dhcp e dns liberadas nos containers anteriores.
 
 ### Testes e resultados
 

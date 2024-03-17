@@ -1,0 +1,13 @@
+options {
+    directory "/var/cache/bind";
+    
+    forwarders {
+        8.8.8.8;
+        8.8.4.4;
+    };
+
+    // Definindo as permissões para consultas externas
+    allow-query {
+        any;
+    };
+};

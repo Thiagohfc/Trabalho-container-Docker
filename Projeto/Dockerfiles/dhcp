@@ -1,0 +1,17 @@
+FROM ubuntu:latest
+
+WORKDIR /home/zenit/Documentos/SRs/
+
+RUN apt-get update && apt-get install -y isc-dhcp-server
+
+RUN touch /var/lib/dhcp/dhcpd.leases
+
+RUN chown dhcpd:dhcpd /var/lib/dhcp/dhcpd.leases
+
+RUN chmod 660 /var/lib/dhcp/dhcpd.leases
+
+COPY /Config/dhcpd.conf /etc/dhcp/dhcpd.conf
+
+EXPOSE 67/udp
+
+CMD ["dhcpd", "-f", "-d", "--no-pid"]
