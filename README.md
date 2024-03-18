@@ -76,20 +76,23 @@ Para que o usuário consiga rodar o projeto, ele deverá clonar este repositóri
   ![IP DHCP](img/ipdhcp.png)
 
   ![IP DNS](img/ipdns.png)
-  
+
   ![IP Firewall](img/ipfirewall.png)
 
 - #### DNS
 
-  - Para testar o serviço DNS você terá que acessar o bash dos containers de dhcp ou firewall e realizar o comando:
+  - Para testar a resolução de nomes de dominio pelo servidor DNS (192.168.0.3), dentro do container do servidor DHCP e Firewall realizai consultas com a ferramenta "dig". Essa ferramenta pode ser instalada com o comando:
 
   ```shell
-  dig www.example.com
+  apt-get install dnsutils
   ```
 
-  - E terá que receber como retorno o ip relacionado a esse endereço de dominio como mostrado na figura abaixo:
+  - As consultas foram feitas usando os dominios: google.com, youtube.com, globo.com e twitter.com conforme as imagens abaixo.
 
-    ![Teste DNS](images/image2.png)
+  ![Teste DNS](img/google.png)
+  ![Teste DNS](img/youtube.png)
+  ![Teste DNS](img/globo.png)
+  ![Teste DNS](img/twitter.png)
 
 - #### Firewall
 
