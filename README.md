@@ -34,15 +34,50 @@ Para que o usuário consiga rodar o projeto, ele deverá clonar este repositóri
 
 - Os serviços foram testados na seguinte sequência
 
-  - DHCP
-  - DNS
-  - Firewall
+  - Containers
+  - Atribuição de IPs (DHCP)
+  - Resolução de nomes de dominíos (DNS)
+  - Conectividade entre os dispositivos na rede (Firewall)
+
+- #### Containers
+
+  - Cada container foi iniciado utilizando as imagens criadas através dos dockerfiles dos serviços: [DHCP](Projeto/Dockerfiles/dhcp),[DNS](Projeto/Dockerfiles/dns) e [Firewall](Projeto/Dockerfiles/firewall). Conforme a imagem abaixo indica:
+
+  ![Containers em execução](img/containers.png)
 
 - #### DHCP
 
-  - Para testar o servidor DHCP podemos apenas adicionar um novo container à rede, assim esperamos que o nosso serviço implementado, através de um pedido feito pelo novo container forneça um novo ip à máquina.
+  - Para testar a atribuição de IPs pelo servidor DHCP, foi criado uma rede docker isolada para os containers e seu serviços através do comando:
 
-    ![Teste DHCP](images/image.png)
+  ```shell
+  sudo docker network create --subnet=192.168.0.0/24 rede_container
+  ```
+
+  ![Rede Docker](img/rede_container.png)
+
+  - Após a criação da rede foi buildada a imagem que contem o servidor dhcp e a atribuição de suas configurações:
+
+  ```shell
+  sudo docker build -f dhcp -t dhcp:1.0 .
+  ```
+
+  ![DHCP Imagem](img/dhcp_image.png)
+
+  - O proximo passo foi iniciar o container com a imagem recém buildada e atribuir a ele o IP fixo da rede criada inicialmente:
+
+  ```shell
+  sudo docker run -d --name dhcp_server --restart always --net rede_container --ip 192.168.0.2 dhcp:1.0
+  ```  
+
+  ![DHCP Container](img/dhcp_container.png)
+
+  - Por fim, ao acessar o container do servidor DHCP, DNS e Firewall, é capaz de observar a atribuição automática do IP na mesma faixa da rede docker criada:
+
+  ![IP DHCP](img/ipdhcp.png)
+
+  ![IP DNS](img/ipdns.png)
+  
+  ![IP Firewall](img/ipfirewall.png)
 
 - #### DNS
 
