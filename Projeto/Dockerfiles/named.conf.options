@@ -5,9 +5,8 @@ options {
         8.8.8.8;
         8.8.4.4;
     };
-
-    // Definindo as permissões para consultas externas
     allow-query {
-        any;
+        localhost;
+        192.168.0.0/24;
     };
 };

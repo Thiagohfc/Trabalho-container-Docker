@@ -1,9 +1,10 @@
 FROM ubuntu:latest
 
-RUN apt-get update && apt-get install -y iptables
+RUN apt-get update \
+    && apt-get install -y iptables
 
-COPY /Config/firewall.sh /root/firewall.sh
+COPY firewall.sh /root/firewall.sh
 
-RUN chmod +x /root/firewall.sh
+RUN chmod 755 /root/firewall.sh
 
-CMD ["/root/firewall.sh"]
+CMD ["/bin/bash", "-c", "/root/firewall.sh; sleep infinity"]
