@@ -81,13 +81,13 @@ Para que o usuário consiga rodar o projeto, ele deverá clonar este repositóri
 
 - #### DNS
 
-  - Para testar a resolução de nomes de dominio pelo servidor DNS (192.168.0.3), dentro do container do servidor DHCP e Firewall realizai consultas com a ferramenta "dig". Essa ferramenta pode ser instalada com o comando:
+  - Para testar a resolução de nomes de dominío pelo servidor DNS (192.168.0.3), dentro do container do servidor DHCP e Firewall realizei consultas com a ferramenta "dig". Essa ferramenta pode ser instalada com o comando:
 
   ```shell
   apt-get install dnsutils
   ```
 
-  - As consultas foram feitas usando os dominios: google.com, youtube.com, globo.com e twitter.com conforme as imagens abaixo.
+  - As consultas foram feitas usando os dominíos: google.com, youtube.com, globo.com e twitter.com conforme as imagens abaixo.
 
   ![Teste DNS](img/google.png)
   ![Teste DNS](img/youtube.png)
