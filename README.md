@@ -53,7 +53,7 @@ Para que o usuário consiga rodar o projeto, ele deverá clonar este repositóri
   sudo docker network create --subnet=192.168.1.0/24 rede_docker
   ```
 
-  ![Rede Docker](img/rede_container.png)
+  ![Rede Docker](img/rede.png)
 
   - Após a criação da rede foi buildada a imagem que contem o servidor dhcp e a atribuição de suas configurações:
 
