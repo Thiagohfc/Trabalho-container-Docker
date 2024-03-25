@@ -50,7 +50,7 @@ Para que o usuário consiga rodar o projeto, ele deverá clonar este repositóri
   - Para testar a atribuição de IPs pelo servidor DHCP, foi criado uma rede docker isolada para os containers e seu serviços através do comando:
 
   ```shell
-  sudo docker network create --subnet=192.168.0.0/24 rede_container
+  sudo docker network create --subnet=192.168.1.0/24 rede_docker
   ```
 
   ![Rede Docker](img/rede_container.png)
@@ -66,18 +66,14 @@ Para que o usuário consiga rodar o projeto, ele deverá clonar este repositóri
   - O proximo passo foi iniciar o container com a imagem recém buildada e atribuir a ele o IP fixo da rede criada inicialmente:
 
   ```shell
-  sudo docker run -d --name dhcp_server --restart always --net rede_container --ip 192.168.0.2 dhcp:1.0
+  sudo docker run -d --name dhcp_server --restart always --net rede_docker dhcp:1.0
   ```  
 
   ![DHCP Container](img/dhcp_container.png)
 
-  - Por fim, ao acessar o container do servidor DHCP, DNS e Firewall, é capaz de observar a atribuição automática do IP na mesma faixa da rede docker criada:
+  - Por fim, ao acessar o container do servidor DNS e Firewall e utilizar o dhclient para fazer uma requisição. No arquivo dhcpd.leases é possível observar a atribuição de ip feita pelo servidor:
 
-  ![IP DHCP](img/ipdhcp.png)
-
-  ![IP DNS](img/ipdns.png)
-
-  ![IP Firewall](img/ipfirewall.png)
+  ![DHCP Teste](img/dhcpresq.png)
 
 - #### DNS
 
@@ -96,11 +92,9 @@ Para que o usuário consiga rodar o projeto, ele deverá clonar este repositóri
 
 - #### Firewall
 
-  - Para testar o serviço FTP, na sua máquina você deverá executar o seguinte comando no console
+  - Para que o Firewall seja testado, foi observado as regras atribuidas e por fim saberemos que elas estão ativas na rede.
 
   ```shell
-  ftp 192.168.56.2 21
+  iptables -L
   ```
-
-  - Quando pedir usuário digite `kkazin` e a senha: `kkazin`. Se a conexão for estabelecida, você poderá utilizar o comando `put` para adicionar um arquivo e `get` para fazer o download deste arquivo.
-    ![FTP Teste](images/image4.png)
+    ![Firewall Teste](img/fire.png)
